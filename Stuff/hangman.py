@@ -5,10 +5,10 @@ game_end = False
 current_position = 0
 any_success = False
 guess = ''
-false_guesses_left = 8
+false_guesses_left = int(8)
 win = False
 
-def check(current_position, false_guesses_left):
+def check(current_position, false_guesses_left, word_progress):
     current_position = 0
     any_success = False
     for letter in word:
@@ -20,7 +20,7 @@ def check(current_position, false_guesses_left):
         current_position += 1
     if any_success == False:
         print('Incorrect')
-        false_guesses_left -= 1
+        false_guesses_left = false_guesses_left - 1
         if false_guesses_left <= 0:
             print('You lost')
             game_end = True
@@ -29,11 +29,12 @@ def check(current_position, false_guesses_left):
         return false_guesses_left
     current_position = 0
     all_done = True
-    for letter in word:
-        if letter == word_progress[current_position]:
-            pass
-        else:
-            all_done = False
+    word_progress = "".join(word_progress)
+    if word_progress == letter:
+        pass
+    else:
+        all_done = False
+    word_progress = word_progress.split(word_progress)
     if all_done == True:
         game_end = True
         win = True
@@ -41,10 +42,10 @@ def check(current_position, false_guesses_left):
 
 
 while game_end == False:
-    guess = str(input('Guess a letter\n'))
+    guess = str(input(f'Guess a letter\n'))
     if guess == 'exit':
         break
-    false_guesses_left = check(current_position, false_guesses_left)
+    check(current_position, false_guesses_left, word_progress)
 
 if win == True:
     print('You won')
