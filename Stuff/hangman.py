@@ -22,9 +22,9 @@ def check(current_position, false_guesses_left, word_progress, word, game_end, w
         if false_guesses_left <= 0:
             print('You lost')
             game_end = True
-            return game_end
+            return false_guesses_left, game_end, win
         print(f'You have {false_guesses_left} guesses left')
-        return false_guesses_left
+        return false_guesses_left, game_end, win
     else:
         print('Correct')
     current_position = 0
