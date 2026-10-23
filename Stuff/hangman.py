@@ -1,4 +1,6 @@
 word = str(input('Choose a word:\n'))
+empty_space = '\n'
+print(empty_space*40)
 word_progress = list("_"*len(word))
 word = list(word)
 game_end = False
